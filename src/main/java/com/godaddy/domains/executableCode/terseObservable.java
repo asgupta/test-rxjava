@@ -1,4 +1,4 @@
-package com.godaddy.domains;
+package com.godaddy.domains.executableCode;
 
 
 import rx.Observable;
@@ -7,9 +7,11 @@ import rx.Subscriber;
 /**
  * Created by agupta on 12/19/2014.
  */
-public class terseObservable {
+public class terseObservable  extends BaseClass {
     public void runCode()
     {
+        System.out.println("***********************************************");
+        System.out.println("terse observable verbose subscriber");
         //observable is source of data
         Observable<String> myObservable = Observable.just("Hellow worlkd");
 

@@ -1,4 +1,4 @@
-package com.godaddy.domains;
+package com.godaddy.domains.executableCode;
 
 
 import rx.Observable;
@@ -8,10 +8,12 @@ import rx.functions.Action1;
 /**
  * Created by agupta on 12/19/2014.
  */
-public class terseSubscriber {
+public class terseSubscriber extends BaseClass  {
 
     public void runCode()
     {
+        System.out.println("***********************************************");
+        System.out.println("terse observable action as a subscriber");
         Observable<String> myObservable = Observable.just("Hellow World !!");
 
         //only one needed here

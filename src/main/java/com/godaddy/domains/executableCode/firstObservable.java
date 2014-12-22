@@ -1,4 +1,4 @@
-package com.godaddy.domains;
+package com.godaddy.domains.executableCode;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -6,8 +6,10 @@ import rx.Subscriber;
 /**
  * Created by agupta on 12/19/2014.
  */
-public class firstObservable {
+public class firstObservable  extends BaseClass {
     public void runCode() {
+        System.out.println("***********************************************");
+        System.out.println("verbose observable and subscriber");
         Observable<String> myObservable = Observable.create(
                 new Observable.OnSubscribe<String>() {
                     @Override
