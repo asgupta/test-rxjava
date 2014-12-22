@@ -1,5 +1,10 @@
 package com.godaddy.domains;
 
+import com.godaddy.domains.executableCode.BaseClass;
+
+import java.io.File;
+import java.lang.reflect.Method;
+
 /**
  * Hello world!
  *
@@ -10,43 +15,33 @@ public class App
     {
         System.out.println("Starting the test runs");
 
-        System.out.println("***********************************************");
-        System.out.println("verbose observable and subscriber");
-        firstObservable first = new firstObservable();
-        first.runCode();
+        try {
 
-        System.out.println("***********************************************");
-        System.out.println("terse observable verbose subscriber");
-        terseObservable second = new terseObservable();
-        second.runCode();
+            String current = System.getProperty("user.dir");
+            current = current+"\\src\\main\\java\\com\\godaddy\\domains\\executablecode";
+            System.out.println("Current working directory in Java : " + current);
 
-        System.out.println("***********************************************");
-        System.out.println("terse observable action as a subscriber");
-        terseSubscriber third = new terseSubscriber();
-        third.runCode();
+              File[] files = new File(current  ).listFiles();
+            for(File file : files) {
 
-        System.out.println("***********************************************");
-        System.out.println("Single Chained call");
-        chainedCall four = new chainedCall();
-        four.runCode();
+                String fileNameWithOutExt = file.getName().replaceFirst("[.][^.]+$", "");
+                if (!fileNameWithOutExt.equals("BaseClass")) {
+                    fileNameWithOutExt = "com.godaddy.domains.executableCode." + fileNameWithOutExt;
 
+                    Class classDefinition = Class.forName(fileNameWithOutExt);
+                    BaseClass object = (BaseClass) classDefinition.newInstance();
+                    Method m = classDefinition.getDeclaredMethod("runCode", new Class<?>[0]);
+                    m.invoke(object);
+                }
+            }
 
-        System.out.println("***********************************************");
-        System.out.println("Lamda call");
-        lemdaCall five = new lemdaCall();
-        five.runCode();
-
-
-        System.out.println("***********************************************");
-        System.out.println("Adding Maps");
-        addingMaps six = new addingMaps();
-        six.runCode();
-
-        System.out.println("***********************************************");
-        System.out.println("Lamda Maps");
-        terseMap seven = new terseMap();
-        seven.runCode();
-
+        }
+        catch (Exception ex)
+        {
+         ex.printStackTrace();
+        }
 
     }
+
+
 }
